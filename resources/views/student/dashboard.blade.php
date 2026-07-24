@@ -29,7 +29,7 @@
         <a href="/student/dashboard" class="active">📊 Dashboard Home</a>
         <a href="/student/profile">👤 Profile Mgmt.</a>
         <a href="/student/vacancies">🔍 View Vacancies</a>
-        <a href="/student/track" style="color: #0c1014;">📂 Track Applications</a>
+        <a href="{{ url('/student/track') }}" style="color: #0c1014;">📂 Track Applications</a>
         <a href="/logout" style="margin-top: auto; color: #fca5a5;">🚪 Logout</a>
     </div>
 
