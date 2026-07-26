@@ -65,7 +65,7 @@
             <span>📍 {{ $vacancy->location }}</span>
         </div>
         
-        <form action='/student/apply'" method="POST">
+        <form action='/student/register' method="POST">
     @csrf
     
          <!-- 1. ADD THIS UNIQUE ID FIELD (CRITICAL FIX) -->
@@ -115,7 +115,7 @@
 
             <!-- Vacancy Card 3 -->
             <div class="vacancy-card" style="border-top-color: #7c3aed;">
-                <form action="/student/apply" method="POST">
+                <form action="/student/register" method="POST">
                     @csrf
                     <input type="hidden" name="company_name" value="ICT Authority">
                     <input type="hidden" name="job_title" value="Data Analyst Attachee">
