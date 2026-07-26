@@ -65,7 +65,7 @@
             <span>📍 {{ $vacancy->location }}</span>
         </div>
         
-        <form action="/student/register" method="POST">
+        <form action="{{ url('/student/register') }}" method="POST">
             @csrf
             <input type="hidden" name="company_name" value="{{ $vacancy->company_name ?? 'Safaricom PLC' }}">
             <input type="hidden" name="job_title" value="{{ $vacancy->title }}">
