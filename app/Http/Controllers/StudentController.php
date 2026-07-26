@@ -100,7 +100,7 @@ class StudentController extends Controller
        // Matched perfectly with your exact phpMyAdmin columns in the screenshot
        // dd(session('student_id')); 
         \Illuminate\Support\Facades\DB::table('applications')->insert([
-            'student_id'   => session('student_id', 1), // Uses logged-in ID or your test ID (1) if not logged in
+           'student_id' => auth()->id() ?? session('student_id') ?? 1,
             'company_name' => $request->company_name,
             'job_title'    => $request->job_title,
             'status'       => 'Pending Review',
