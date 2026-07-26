@@ -65,23 +65,23 @@
             <span>📍 {{ $vacancy->location }}</span>
         </div>
         
-        <form action="{{ url('/student/register') }}" method="POST">
+        <form action='/student/apply'" method="POST">
     @csrf
     
-    <!-- 1. ADD THIS UNIQUE ID FIELD (CRITICAL FIX) -->
-    <input type="hidden" name="vacancy_id" value="{{ $vacancy->id }}">
+         <!-- 1. ADD THIS UNIQUE ID FIELD (CRITICAL FIX) -->
+          <input type="hidden" name="vacancy_id" value="{{ $vacancy->id }}">
     
-    <!-- 2. Dynamic values directly from the database loop -->
-    <input type="hidden" name="company_name" value="{{ $vacancy->company_name }}">
-    <input type="hidden" name="job_title" value="{{ $vacancy->title }}">
+          <!-- 2. Dynamic values directly from the database loop -->
+          <input type="hidden" name="company_name" value="{{ $vacancy->company_name }}">
+          <input type="hidden" name="job_title" value="{{ $vacancy->title }}">
     
-    <button type="submit" style="background: #2563eb; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
-        Apply For Placement
-    </button>
-</form>
-    </div>
+         <button type="submit" style="background: #2563eb; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+          Apply For Placement
+         </button>
+          </form>
+          </div>
 
-@endforeach
+   
                     <div>
                         <div class="company-name">Safaricom PLC</div>
                         <div class="job-title">Software Engineering Intern</div>
@@ -93,7 +93,7 @@
                     </div>
                 </form>
             </div>
-
+@endforeach
             <!-- Vacancy Card 2 -->
             <div class="vacancy-card" style="border-top-color: #0d9488;">
                 <form action="/student/register" method="POST">
