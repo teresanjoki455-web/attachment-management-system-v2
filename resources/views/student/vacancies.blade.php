@@ -66,11 +66,19 @@
         </div>
         
         <form action="{{ url('/student/register') }}" method="POST">
-            @csrf
-            <input type="hidden" name="company_name" value="{{ $vacancy->company_name ?? 'Safaricom PLC' }}">
-            <input type="hidden" name="job_title" value="{{ $vacancy->title }}">
-            <button type="submit" style="background: #2563eb; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer;">Apply Now</button>
-        </form>
+    @csrf
+    
+    <!-- 1. ADD THIS UNIQUE ID FIELD (CRITICAL FIX) -->
+    <input type="hidden" name="vacancy_id" value="{{ $vacancy->id }}">
+    
+    <!-- 2. Dynamic values directly from the database loop -->
+    <input type="hidden" name="company_name" value="{{ $vacancy->company_name }}">
+    <input type="hidden" name="job_title" value="{{ $vacancy->title }}">
+    
+    <button type="submit" style="background: #2563eb; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+        Apply For Placement
+    </button>
+</form>
     </div>
 
 @endforeach
