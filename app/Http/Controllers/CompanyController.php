@@ -31,20 +31,32 @@ class CompanyController extends Controller
 
      return view('company.applicants', compact('applications'));
     }
-    public function login(Request $request)
-    {
-        $company = DB::table('companies')
-            ->where('email', $request->email)
-            ->first();
+  public function login(Request $request)
+{
+    // Validate input
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required'
+    ]);
 
-        if ($company)
-        {
-            session(['company_id' => $company->id]);
-            return redirect('/company/dashboard');
-        }
+    // Find company by email only
+    $company = DB::table('companies')
+        ->where('email', $request->email)
+        ->first();
+        dd($company);
 
-        return back()->with('error', 'Invalid email or password.');
+    // Check if company exists and password matches
+    if ($company && Hash::check($request->password, $company->password)) {
+
+        session([
+            'company_id' => $company->id
+        ]);
+
+        return redirect('/company/dashboard');
     }
+
+    return back()->with('error', 'Invalid email or password.');
+}
 
     public function viewStudentProfile($id)
     {
