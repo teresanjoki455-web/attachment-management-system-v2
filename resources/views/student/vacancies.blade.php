@@ -115,7 +115,7 @@
 
             <!-- Vacancy Card 3 -->
             <div class="vacancy-card" style="border-top-color: #7c3aed;">
-                <form action="/student/register" method="POST">
+               <form action="/student/register" method="POST">
                     @csrf
                     <input type="hidden" name="company_name" value="ICT Authority">
                     <input type="hidden" name="job_title" value="Data Analyst Attachee">
