@@ -43,7 +43,6 @@ class CompanyController extends Controller
     $company = DB::table('companies')
         ->where('email', $request->email)
         ->first();
-        dd($company);
 
     // Check if company exists and password matches
     if ($company && Hash::check($request->password, $company->password)) {
