@@ -4,207 +4,159 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Attachment Management System</title>
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://bunny.net">
-    <link href="https://bunny.net/css?family=figtree:300,400,500,600,700&display=swap" rel="stylesheet" />
-    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         body {
-            font-family: 'Figtree', sans-serif;
-            background-color: #f8fafc;
-            color: #0f172a;
+            background-color: #f1f5f9;
             min-height: 100vh;
             display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
         }
-        /* Split Screen Container Layout */
-        .landing-container {
+
+        .landing-box {
             display: flex;
             width: 100%;
-            min-height: 100vh;
+            max-width: 960px;
+            min-height: 560px;
+            background-color: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.1);
         }
-        /* Left Column: Interactive Launch Control Card Panel */
-        .content-panel {
+
+        /* Left: Image side */
+        .visual-pane {
             flex: 1;
+            background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+        }
+        .gradient-overlay {
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.9), rgba(30, 58, 138, 0.5), transparent);
+            padding: 40px;
+            width: 100%;
+            color: #ffffff;
+        }
+        .gradient-overlay h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .gradient-overlay p {
+            font-size: 14px;
+            color: #e2e8f0;
+            line-height: 1.5;
+        }
+
+        /* Right: Portal selection side */
+        .content-pane {
+            flex: 1;
+            padding: 56px 48px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 4rem 5rem;
-            background-color: #ffffff;
-            max-width: 600px;
-            box-shadow: 10px 0 30px rgba(15, 23, 42, 0.02);
-            z-index: 10;
         }
-        .brand-logo {
-            font-size: 0.9rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1rem;
-            color: #4f46e5;
-            margin-bottom: 3rem;
+        .logo-badge {
+            width: 48px;
+            height: 48px;
+            background: #2563eb;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-bottom: 24px;
         }
-        .main-heading {
-            font-size: 2.75rem;
-            font-weight: 700;
-            line-height: 1.2;
+        h1 {
             color: #1e293b;
-            margin-bottom: 1rem;
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
         }
-        .main-heading span {
-            color: #4f46e5;
-        }
-        .sub-text {
-            font-size: 1.1rem;
+        .subtitle {
             color: #64748b;
-            line-height: 1.6;
-            margin-bottom: 3rem;
+            font-size: 14px;
+            margin-bottom: 36px;
         }
-        /* Launch Gate Controller Action Buttons */
-        .button-group {
+        .portal-links {
             display: flex;
             flex-direction: column;
-            gap: 1.25rem;
+            gap: 14px;
         }
         .portal-btn {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 1.1rem 1.5rem;
+            gap: 12px;
+            padding: 16px 18px;
+            border-radius: 10px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.05rem;
-            border-radius: 0.5rem;
-            transition: all 0.3s ease;
+            font-size: 15px;
+            color: #1e293b;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s;
         }
-        .btn-student {
-            background-color: #4f46e5;
-            color: #ffffff;
-            box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
-        }
-        .btn-student:hover {
-            background-color: #4338ca;
+        .portal-btn:hover {
+            border-color: #2563eb;
+            background-color: #eff6ff;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
         }
-        .btn-admin {
-            background-color: #0f172a;
-            color: #ffffff;
-            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15);
-        }
-        .btn-admin:hover {
-            background-color: #1e293b;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(15, 23, 42, 0.25);
-        }
-        .btn-arrow {
-            font-size: 1.2rem;
-            transition: transform 0.3s ease;
-        }
-        .btn-company {
-    background-color: #3490dc !important; /* Professional Light Blue */
-    color: white !important;
-}
-.btn-company:hover {
-    background-color: #2779bd !important; /* Slightly darker blue on hover */
-}
-        .portal-btn:hover .btn-arrow {
-            transform: translateX(5px);
-        }
-        /* Right Column: High Density Visual Presentation Graphics Image Panel */
-        .graphic-panel {
-            flex: 1;
-            position: relative;
-            background-image: linear-gradient(135deg, rgba(79, 70, 229, 0.85), rgba(15, 23, 42, 0.95)), 
-                              url('https://unsplash.com');
-            background-size: cover;
-            background-position: center;
+        .icon-circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 4rem;
+            font-size: 16px;
+            color: white;
+            flex-shrink: 0;
         }
-        .overlay-card {
-            background: rgba(255, 255, 255, 0.07);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 3rem;
-            border-radius: 1rem;
-            color: #ffffff;
-            max-width: 500px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-        .overlay-card h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #38bdf8;
-        }
-        .overlay-card p {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #e2e8f0;
-        }
-        /* Responsive scaling across windows */
-        @media (max-width: 1024px) {
-            .graphic-panel {
-                display: none;
-            }
-            .content-panel {
-                max-width: 100%;
-                padding: 4rem 2rem;
-            }
+        .student-icon { background: #2563eb; }
+        .company-icon { background: #0d9488; }
+        .admin-icon { background: #7c3aed; }
+
+        @media (max-width: 768px) {
+            .visual-pane { display: none; }
+            .landing-box { max-width: 450px; min-height: auto; }
+            .content-pane { padding: 40px 28px; }
         }
     </style>
 </head>
 <body>
-
-    <div class="landing-container">
-        
-        <!-- Left Side Control Column Space -->
-        <div class="content-panel">
-            <div class="brand-logo">NITA Unified Network</div>
-            
-            <h1 class="main-heading">Attachment <span>Management</span> System</h1>
-            <p class="sub-text">
-                Welcome to your central application gateway. Streamline your industrial attachment workflow, connect with verified placement partners, and monitor your clearance records instantly.
-            </p>
-            
-            <div class="button-group">
-                <!-- Portal Link 1: Student Core Gateway -->
-                <a href="/student/dashboard" class="portal-btn btn-student">
-                    <span>Student Portal Gateway</span>
-                    <span class="btn-arrow">→</span>
-                </a>
-                <!-- Portal Link 3: Company Gate -->
-                    <a href="/company/login" class="portal-btn btn-company">
-                        <span>Company Portal Gateway</span>
-                        <span class="btn-arrow">&rarr;</span>
-                    </a>
-                
-                <!-- Portal Link 2: Management Admin Hub -->
-                <a href="/admin/login" class="portal-btn btn-admin">
-                    <span>Administrative Hub Control</span>
-                    <span class="btn-arrow">→</span>
-                </a>
-            </div>
-        </div>
-        
-        <!-- Right Side Stunning Graphic Column Space -->
-        <div class="graphic-panel">
-            <div class="overlay-card">
-                <h3>Empowering Institutional Progress</h3>
-                <p>
-                    Connecting institutional student skills with industry leading entities. Our platform ensures data validation tracking maps work perfectly across administrative reviewing networks [Sun, Jul 5, 2026].
-                </p>
+    <div class="landing-box">
+        <div class="visual-pane">
+            <div class="gradient-overlay">
+                <h3>Empowering Student Attachments</h3>
+                <p>Connecting students, companies, and administrators in one seamless placement platform.</p>
             </div>
         </div>
 
+        <div class="content-pane">
+            <div class="logo-badge">🎓</div>
+            <h1>Attachment Management System</h1>
+            <p class="subtitle">Select your portal to continue</p>
+
+            <div class="portal-links">
+                <a href="/student/login" class="portal-btn">
+                    <span class="icon-circle student-icon">🎓</span>
+                    Student Portal
+                </a>
+                <a href="/company/login" class="portal-btn">
+                    <span class="icon-circle company-icon">🏢</span>
+                    Company Portal
+                </a>
+                <a href="/admin/login" class="portal-btn">
+                    <span class="icon-circle admin-icon">🔐</span>
+                    Admin Portal
+                </a>
+            </div>
+        </div>
     </div>
-
 </body>
 </html>

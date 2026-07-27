@@ -11,9 +11,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/', function () {
-    return redirect('/student/login');
-});
 
 // 2. Student Authentication Routes
 Route::get('/student/login', [StudentController::class, 'loginForm']);
